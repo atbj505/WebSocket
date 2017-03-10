@@ -1,0 +1,14 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+server	../socketServer.py	/^server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)$/;"	kind:variable	line:21
+socket	../socketServer.py	/^import socket$/;"	kind:namespace	line:4
+socketServer.py	../socketServer.py	1;"	kind:file	line:1
+t	../socketServer.py	/^t = threading.Thread(target=tcplink, args=(sock, addr))$/;"	kind:variable	line:31
+tcplink	../socketServer.py	/^def tcplink(sock, addr):$/;"	kind:function	line:9
+threading	../socketServer.py	/^import threading$/;"	kind:namespace	line:6
+time	../socketServer.py	/^import time$/;"	kind:namespace	line:5
+webSocketServer.py	../webSocketServer.py	1;"	kind:file	line:1
