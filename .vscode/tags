@@ -4,6 +4,10 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+Index	../webSocketServer.py	/^class Index(tornado.web.RequestHandler):$/;"	kind:class	line:8
+app	../webSocketServer.py	/^    app = tornado.web.Application([$/;"	kind:variable	line:14
+get	../webSocketServer.py	/^    def get(self):$/;"	kind:member	line:9
+ioloop	../webSocketServer.py	/^import tornado.ioloop$/;"	kind:namespace	line:5
 server	../socketServer.py	/^server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)$/;"	kind:variable	line:21
 socket	../socketServer.py	/^import socket$/;"	kind:namespace	line:4
 socketServer.py	../socketServer.py	1;"	kind:file	line:1
@@ -11,4 +15,7 @@ t	../socketServer.py	/^t = threading.Thread(target=tcplink, args=(sock, addr))$/
 tcplink	../socketServer.py	/^def tcplink(sock, addr):$/;"	kind:function	line:9
 threading	../socketServer.py	/^import threading$/;"	kind:namespace	line:6
 time	../socketServer.py	/^import time$/;"	kind:namespace	line:5
+tornado	../webSocketServer.py	/^import tornado.ioloop$/;"	kind:namespace	line:5
+tornado	../webSocketServer.py	/^import tornado.web$/;"	kind:namespace	line:4
+web	../webSocketServer.py	/^import tornado.web$/;"	kind:namespace	line:4
 webSocketServer.py	../webSocketServer.py	1;"	kind:file	line:1
