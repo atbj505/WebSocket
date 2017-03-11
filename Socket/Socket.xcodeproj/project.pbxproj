@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02546910C5229B01AFDE2E17 /* Pods_Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5329FCF26BFFAFC609218ECE /* Pods_Socket.framework */; };
+		572785A11E73C98700EB3406 /* RYWebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 572785A01E73C98700EB3406 /* RYWebSocketManager.m */; };
 		57F6F6821E261CCC00462C8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F6F6811E261CCC00462C8B /* main.m */; };
 		57F6F6851E261CCC00462C8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F6F6841E261CCC00462C8B /* AppDelegate.m */; };
 		57F6F6881E261CCC00462C8B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F6F6871E261CCC00462C8B /* ViewController.m */; };
@@ -21,6 +22,8 @@
 		0D42D089E6FC35AD2FF8C632 /* Pods-Socket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Socket.release.xcconfig"; path = "Pods/Target Support Files/Pods-Socket/Pods-Socket.release.xcconfig"; sourceTree = "<group>"; };
 		5329FCF26BFFAFC609218ECE /* Pods_Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Socket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55DE99B9B0DF68C2E02F8E6A /* Pods-Socket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Socket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Socket/Pods-Socket.debug.xcconfig"; sourceTree = "<group>"; };
+		5727859F1E73C98700EB3406 /* RYWebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYWebSocketManager.h; sourceTree = "<group>"; };
+		572785A01E73C98700EB3406 /* RYWebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYWebSocketManager.m; sourceTree = "<group>"; };
 		57F6F67D1E261CCC00462C8B /* Socket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Socket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57F6F6811E261CCC00462C8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		57F6F6831E261CCC00462C8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				57F6F6871E261CCC00462C8B /* ViewController.m */,
 				57F6F6971E26206500462C8B /* RYSocketManager.h */,
 				57F6F6981E26206500462C8B /* RYSocketManager.m */,
+				5727859F1E73C98700EB3406 /* RYWebSocketManager.h */,
+				572785A01E73C98700EB3406 /* RYWebSocketManager.m */,
 				57F6F6891E261CCC00462C8B /* Main.storyboard */,
 				57F6F68C1E261CCC00462C8B /* Assets.xcassets */,
 				57F6F68E1E261CCC00462C8B /* LaunchScreen.storyboard */,
@@ -234,6 +239,7 @@
 				57F6F6881E261CCC00462C8B /* ViewController.m in Sources */,
 				57F6F6851E261CCC00462C8B /* AppDelegate.m in Sources */,
 				57F6F6821E261CCC00462C8B /* main.m in Sources */,
+				572785A11E73C98700EB3406 /* RYWebSocketManager.m in Sources */,
 				57F6F6991E26206500462C8B /* RYSocketManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
