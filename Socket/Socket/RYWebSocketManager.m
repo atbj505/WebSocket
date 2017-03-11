@@ -32,7 +32,9 @@
 }
 
 - (void)initSocket {
-    self.webSocket = [[SRWebSocket alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"ws://%@:%d", @"120.0.0.1", 8000]]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:8000/soc"]];
+    
+    self.webSocket = [[SRWebSocket alloc] initWithURLRequest:request];
     
     self.webSocket.delegate = self;
     
@@ -65,6 +67,9 @@
 }
 
 - (void)connect {
+    if (!self.webSocket) {
+        [self initSocket];
+    }
     self.reConnectTime = 0;
 }
 
@@ -134,7 +139,6 @@
     }
     //断开连接时销毁心跳
     [self destoryHeartBeat];
-    
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload {

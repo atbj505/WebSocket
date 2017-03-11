@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "RYSocketManager.h"
+#import "RYWebSocketManager.h"
 
 @interface ViewController ()
 
@@ -16,17 +17,19 @@
 @implementation ViewController
 
 - (void)dealloc {
-    [[RYSocketManager shareInstance] disConnect];
+//    [[RYSocketManager shareInstance] disConnect];
+    [[RYWebSocketManager shareInstance] disConnect];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[RYSocketManager shareInstance] connect];
+//    [[RYSocketManager shareInstance] connect];
+    [[RYWebSocketManager shareInstance] connect];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [[RYSocketManager shareInstance] sendMsg:@"Robert"];
+//    [[RYSocketManager shareInstance] sendMsg:@"Robert"];
+    [[RYWebSocketManager shareInstance] sendMsg:@"Robert"];
 }
 
 @end
