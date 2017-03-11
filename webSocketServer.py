@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import tornado.web
+import json
+
 import tornado.ioloop
+import tornado.web
 import tornado.websocket
 
 
@@ -14,9 +16,35 @@ class Index(tornado.web.RequestHandler):
 class SocketHandler(tornado.websocket.WebSocketHandler):
     clients = set()
 
-    # @staticmethod
+    @staticmethod
+    def send_to_all(message):
+        for c in SocketHandler.clients:
+            c.write_message(json.dumps(message))
+
+    def on_message(self, message):
+        SocketHandler.send_to_all({
+            'type': 'user',
+            'id': id(self),
+            'message': message,
+        })
+
     def open(self):
-        self.write_message('Welcome to WebSocket')
+        self.write_message(json.dumps({
+            'type': 'sys',
+            'message': 'Welcome to WebSocket',
+        }))
+        SocketHandler.send_to_all({
+            'type': 'sys',
+            'message': str(id(self)) + ' has joined',
+        })
+        SocketHandler.clients.add(self)
+
+    def on_close(self):
+        SocketHandler.clients.remove(self)
+        SocketHandler.send_to_all({
+            'type': 'sys',
+            'message': str(id(self)) + ' has left',
+        })
 
 
 if __name__ == '__main__':
