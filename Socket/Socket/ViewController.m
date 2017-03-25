@@ -30,14 +30,10 @@
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 //    [[RYSocketManager shareInstance] sendMsg:@"Robert"];
-    ChatMessage *chatMessage = [[ChatMessage alloc] init];
-    chatMessage.type = 0;
-    chatMessage.id_p = 13;
-    chatMessage.content = @"Hello World";
     // NSData *data = [chatMessage data];
-    // ChatMessage *message = [ChatMessage parseFromData:data error:nil];
+//     ChatMessage *message = [ChatMessage parseFromData:data error:nil];
     
-    [[RYWebSocketManager shareInstance] sendMsg:[chatMessage data]];
+    [[RYWebSocketManager shareInstance] sendMsg:@"Hello World"];
 }
 
 @end

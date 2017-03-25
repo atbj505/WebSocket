@@ -18,39 +18,49 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
     @staticmethod
     def send_to_all(message):
         for c in SocketHandler.clients:
-            c.write_message(json.dumps(message))
+            c.write_message(self.protoBufSerialize(message))
 
     def on_message(self, message):
-        SocketHandler.send_to_all({
-            'type': 'user',
-            'id': id(self),
-            'message': message,
-        })
+        receivedMessage = self.protoBufParse(message)
+        SocketHandler.send_to_all(receivedMessage)
 
-    def protoBufData(self, **data):
-        chatMessage = ChatMessage()
-        chatMessage.type = data[type]
-        chatMessage.id = data[id]
-        chatMessage.content = data[content]
-        sendDataStr = chatMessage.SerializeToString()
+    def protoBufSerialize(self, message):
+        sendDataStr = None
+        if isinstance(message, dict):
+            chatMessage = ChatMessage()
+            chatMessage.message_type = message["message_type"]
+            chatMessage.user_id = message["user_id"]
+            chatMessage.message_content = message["message_content"]
+            sendDataStr = chatMessage.SerializeToString()
+        elif isinstance(message, ChatMessage):
+            sendDataStr = message.SerializeToString()
         return sendDataStr
 
+    def protoBufParse(self, str):
+        receivedMessage = ChatMessage()
+        receivedMessage.ParseFromString(str)
+        return receivedMessage
+
     def open(self):
-        self.write_message(json.dumps({
-            'type': 'sys',
-            'message': 'Welcome to WebSocket',
-        }))
+        data = {
+            'message_type': 0,
+            'user_id': 1,
+            'message_content': 'Welcome to WebSocket',
+        }
+        self.write_message(self.protoBufSerialize(data))
         SocketHandler.send_to_all({
-            'type': 'sys',
-            'message': str(id(self)) + ' has joined',
+            'message_type': 0,
+            'user_id': 1,
+            'message_content': str(id(self)) + ' has joined',
         })
         SocketHandler.clients.add(self)
 
     def on_close(self):
         SocketHandler.clients.remove(self)
         SocketHandler.send_to_all({
-            'type': 'sys',
-            'message': str(id(self)) + ' has left',
+            'message_type': 0,
+            'user_id': 1,
+            'message_content': str(id(self)) + ' has left',
         })
 
 

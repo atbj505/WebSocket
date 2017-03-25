@@ -8,6 +8,7 @@
 
 #import "RYWebSocketManager.h"
 #import <SocketRocket/SocketRocket.h>
+#import "ChatMessage.pbobjc.h"
 
 @interface RYWebSocketManager () <SRWebSocketDelegate>
 
@@ -39,6 +40,7 @@
     self.webSocket.delegate = self;
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    
     queue.maxConcurrentOperationCount = 1;
     
     [self.webSocket setDelegateOperationQueue:queue];
@@ -46,11 +48,26 @@
     [self.webSocket open];
 }
 
+- (NSString *)protoBufSerialize:(NSString *)content {
+    ChatMessage *chatMessage = [[ChatMessage alloc] init];
+    chatMessage.messageType = 0;
+    chatMessage.userId = 13;
+    chatMessage.messageContent = content;
+    NSData *data = [chatMessage data];
+    NSString *sendDataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return sendDataStr;
+}
+
+- (ChatMessage *)protoBufParse:(NSString *)message {
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    ChatMessage *chatMessage = [ChatMessage parseFromData:data error:nil];
+    return chatMessage;
+}
+
 - (void)initHeartBeat {
     dispatch_async(dispatch_get_main_queue(), ^{
         __weak typeof(self) weakSelf = self;
         self.heartBeat = [NSTimer scheduledTimerWithTimeInterval:3*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            NSLog(@"heart");
             [weakSelf sendMsg:@"heart"];
         }];
         [[NSRunLoop currentRunLoop]addTimer:self.heartBeat forMode:NSRunLoopCommonModes];
@@ -77,9 +94,8 @@
     [self.webSocket close];
 }
 
-- (void)sendMsg:(NSData *)msg {
-    [self.webSocket send:msg];
-    
+- (void)sendMsg:(NSString *)msg {
+    [self.webSocket send:[self protoBufSerialize:msg]];
 }
 
 - (void)reConnect {
@@ -111,7 +127,8 @@
 #pragma mark - SRWebSocketDelegate
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    NSLog(@"服务器返回收到消息:%@",message);
+    ChatMessage *chatMessage = [self protoBufParse:message];
+    NSLog(@"服务器返回收到消息:%@", chatMessage.messageContent);
 }
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {

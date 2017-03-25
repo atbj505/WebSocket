@@ -46,15 +46,15 @@ static GPBFileDescriptor *ChatMessageRoot_FileDescriptor(void) {
 
 @implementation ChatMessage
 
-@dynamic type;
-@dynamic id_p;
-@dynamic content;
+@dynamic messageType;
+@dynamic userId;
+@dynamic messageContent;
 
 typedef struct ChatMessage__storage_ {
   uint32_t _has_storage_[1];
-  ChatMessage_ChatType type;
-  int32_t id_p;
-  NSString *content;
+  ChatMessage_ChatType messageType;
+  int32_t userId;
+  NSString *messageContent;
 } ChatMessage__storage_;
 
 // This method is threadsafe because it is initially called
@@ -64,29 +64,29 @@ typedef struct ChatMessage__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "type",
+        .name = "messageType",
         .dataTypeSpecific.enumDescFunc = ChatMessage_ChatType_EnumDescriptor,
-        .number = ChatMessage_FieldNumber_Type,
+        .number = ChatMessage_FieldNumber_MessageType,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(ChatMessage__storage_, type),
+        .offset = (uint32_t)offsetof(ChatMessage__storage_, messageType),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasEnumDescriptor),
         .dataType = GPBDataTypeEnum,
       },
       {
-        .name = "id_p",
+        .name = "userId",
         .dataTypeSpecific.className = NULL,
-        .number = ChatMessage_FieldNumber_Id_p,
+        .number = ChatMessage_FieldNumber_UserId,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(ChatMessage__storage_, id_p),
+        .offset = (uint32_t)offsetof(ChatMessage__storage_, userId),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeInt32,
       },
       {
-        .name = "content",
+        .name = "messageContent",
         .dataTypeSpecific.className = NULL,
-        .number = ChatMessage_FieldNumber_Content,
+        .number = ChatMessage_FieldNumber_MessageContent,
         .hasIndex = 2,
-        .offset = (uint32_t)offsetof(ChatMessage__storage_, content),
+        .offset = (uint32_t)offsetof(ChatMessage__storage_, messageContent),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
@@ -107,15 +107,15 @@ typedef struct ChatMessage__storage_ {
 
 @end
 
-int32_t ChatMessage_Type_RawValue(ChatMessage *message) {
+int32_t ChatMessage_MessageType_RawValue(ChatMessage *message) {
   GPBDescriptor *descriptor = [ChatMessage descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:ChatMessage_FieldNumber_Type];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:ChatMessage_FieldNumber_MessageType];
   return GPBGetMessageInt32Field(message, field);
 }
 
-void SetChatMessage_Type_RawValue(ChatMessage *message, int32_t value) {
+void SetChatMessage_MessageType_RawValue(ChatMessage *message, int32_t value) {
   GPBDescriptor *descriptor = [ChatMessage descriptor];
-  GPBFieldDescriptor *field = [descriptor fieldWithNumber:ChatMessage_FieldNumber_Type];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:ChatMessage_FieldNumber_MessageType];
   GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
 }
 

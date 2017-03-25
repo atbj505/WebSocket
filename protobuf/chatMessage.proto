@@ -5,7 +5,7 @@ message ChatMessage {
     SYSTEM = 0;
     USER = 1;
   }
-  ChatType type = 1;
-  int32 id = 2;
-  string content = 3;
+  ChatType message_type = 1;
+  int32 user_id = 2;
+  string message_content = 3;
 }

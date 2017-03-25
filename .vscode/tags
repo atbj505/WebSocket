@@ -20,7 +20,7 @@ _message	../protobuf/chatMessage_pb2.py	/^from google.protobuf import message as
 _reflection	../protobuf/chatMessage_pb2.py	/^from google.protobuf import reflection as _reflection$/;"	kind:namespace	line:8
 _sym_db	../protobuf/chatMessage_pb2.py	/^_sym_db = _symbol_database.Default()$/;"	kind:variable	line:13
 _symbol_database	../protobuf/chatMessage_pb2.py	/^from google.protobuf import symbol_database as _symbol_database$/;"	kind:namespace	line:9
-app	../webSocketServer.py	/^    app = tornado.web.Application([$/;"	kind:variable	line:57
+app	../webSocketServer.py	/^    app = tornado.web.Application([$/;"	kind:variable	line:58
 chatMessage_pb2.py	../protobuf/chatMessage_pb2.py	1;"	kind:file	line:1
 clients	../webSocketServer.py	/^    clients = set()$/;"	kind:variable	line:16
 containing_type	../protobuf/chatMessage_pb2.py	/^  containing_type=None,$/;"	kind:variable	line:43
@@ -43,10 +43,10 @@ name	../protobuf/chatMessage_pb2.py	/^  name='ChatMessage',$/;"	kind:variable	li
 name	../protobuf/chatMessage_pb2.py	/^  name='ChatType',$/;"	kind:variable	line:29
 name	../protobuf/chatMessage_pb2.py	/^  name='chatMessage.proto',$/;"	kind:variable	line:19
 nested_types	../protobuf/chatMessage_pb2.py	/^  nested_types=[],$/;"	kind:variable	line:82
-on_close	../webSocketServer.py	/^    def on_close(self):$/;"	kind:member	line:48
+on_close	../webSocketServer.py	/^    def on_close(self):$/;"	kind:member	line:49
 on_message	../webSocketServer.py	/^    def on_message(self, message):$/;"	kind:member	line:23
 oneofs	../protobuf/chatMessage_pb2.py	/^  oneofs=[$/;"	kind:variable	line:90
-open	../webSocketServer.py	/^    def open(self):$/;"	kind:member	line:37
+open	../webSocketServer.py	/^    def open(self):$/;"	kind:member	line:38
 options	../protobuf/chatMessage_pb2.py	/^      options=None),$/;"	kind:variable	line:64
 options	../protobuf/chatMessage_pb2.py	/^      options=None),$/;"	kind:variable	line:71
 options	../protobuf/chatMessage_pb2.py	/^      options=None),$/;"	kind:variable	line:78

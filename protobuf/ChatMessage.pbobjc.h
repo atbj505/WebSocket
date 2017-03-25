@@ -68,32 +68,32 @@ BOOL ChatMessage_ChatType_IsValidValue(int32_t value);
 #pragma mark - ChatMessage
 
 typedef GPB_ENUM(ChatMessage_FieldNumber) {
-  ChatMessage_FieldNumber_Type = 1,
-  ChatMessage_FieldNumber_Id_p = 2,
-  ChatMessage_FieldNumber_Content = 3,
+  ChatMessage_FieldNumber_MessageType = 1,
+  ChatMessage_FieldNumber_UserId = 2,
+  ChatMessage_FieldNumber_MessageContent = 3,
 };
 
 @interface ChatMessage : GPBMessage
 
-@property(nonatomic, readwrite) ChatMessage_ChatType type;
+@property(nonatomic, readwrite) ChatMessage_ChatType messageType;
 
-@property(nonatomic, readwrite) int32_t id_p;
+@property(nonatomic, readwrite) int32_t userId;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *content;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *messageContent;
 
 @end
 
 /**
- * Fetches the raw value of a @c ChatMessage's @c type property, even
+ * Fetches the raw value of a @c ChatMessage's @c messageType property, even
  * if the value was not defined by the enum at the time the code was generated.
  **/
-int32_t ChatMessage_Type_RawValue(ChatMessage *message);
+int32_t ChatMessage_MessageType_RawValue(ChatMessage *message);
 /**
- * Sets the raw value of an @c ChatMessage's @c type property, allowing
+ * Sets the raw value of an @c ChatMessage's @c messageType property, allowing
  * it to be set to a value that was not defined by the enum at the time the code
  * was generated.
  **/
-void SetChatMessage_Type_RawValue(ChatMessage *message, int32_t value);
+void SetChatMessage_MessageType_RawValue(ChatMessage *message, int32_t value);
 
 NS_ASSUME_NONNULL_END
 
