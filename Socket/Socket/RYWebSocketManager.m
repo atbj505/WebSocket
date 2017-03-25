@@ -77,7 +77,7 @@
     [self.webSocket close];
 }
 
-- (void)sendMsg:(NSString *)msg {
+- (void)sendMsg:(NSData *)msg {
     [self.webSocket send:msg];
     
 }

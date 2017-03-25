@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "RYSocketManager.h"
 #import "RYWebSocketManager.h"
+#import "ChatMessage.pbobjc.h"
 
 @interface ViewController ()
 
@@ -29,7 +30,11 @@
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 //    [[RYSocketManager shareInstance] sendMsg:@"Robert"];
-    [[RYWebSocketManager shareInstance] sendMsg:@"Robert"];
+    ChatMessage *chatMessage = [[ChatMessage alloc] init];
+    chatMessage.type = 0;
+    chatMessage.id_p = 13;
+    chatMessage.content = @"Hello World";
+    [[RYWebSocketManager shareInstance] sendMsg:[chatMessage data]];
 }
 
 @end

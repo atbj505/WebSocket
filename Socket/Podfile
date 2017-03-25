@@ -6,7 +6,7 @@ target 'Socket' do
   use_frameworks!
   pod 'CocoaAsyncSocket'
   pod 'SocketRocket'
-  pod 'ProtocolBuffers'
+  pod 'Protobuf'
   # Pods for Socket
 
 end

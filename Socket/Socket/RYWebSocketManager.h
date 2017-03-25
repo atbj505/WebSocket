@@ -14,7 +14,7 @@
 
 - (void)connect;
 - (void)disConnect;
-- (void)sendMsg:(NSString *)msg;
+- (void)sendMsg:(NSData *)msg;
 - (void)ping;
 
 @end

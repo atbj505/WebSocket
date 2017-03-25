@@ -1,8 +1,8 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket" "$PODS_CONFIGURATION_BUILD_DIR/ProtocolBuffers" "$PODS_CONFIGURATION_BUILD_DIR/SocketRocket"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket" "$PODS_CONFIGURATION_BUILD_DIR/Protobuf" "$PODS_CONFIGURATION_BUILD_DIR/SocketRocket"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket/CocoaAsyncSocket.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/ProtocolBuffers/ProtocolBuffers.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SocketRocket/SocketRocket.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "CocoaAsyncSocket" -framework "ProtocolBuffers" -framework "SocketRocket"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket/CocoaAsyncSocket.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Protobuf/Protobuf.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SocketRocket/SocketRocket.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "CocoaAsyncSocket" -framework "Protobuf" -framework "SocketRocket"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}/Pods
