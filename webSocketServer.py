@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import json
-
 import tornado.ioloop
 import tornado.web
 import tornado.websocket
+from protobuf.chatMessage_pb2 import ChatMessage
 
 
 class Index(tornado.web.RequestHandler):
@@ -27,6 +26,14 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
             'id': id(self),
             'message': message,
         })
+
+    def protoBufData(self, **data):
+        chatMessage = ChatMessage()
+        chatMessage.type = data[type]
+        chatMessage.id = data[id]
+        chatMessage.content = data[content]
+        sendDataStr = chatMessage.SerializeToString()
+        return sendDataStr
 
     def open(self):
         self.write_message(json.dumps({

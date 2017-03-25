@@ -34,6 +34,9 @@
     chatMessage.type = 0;
     chatMessage.id_p = 13;
     chatMessage.content = @"Hello World";
+    // NSData *data = [chatMessage data];
+    // ChatMessage *message = [ChatMessage parseFromData:data error:nil];
+    
     [[RYWebSocketManager shareInstance] sendMsg:[chatMessage data]];
 }
 
