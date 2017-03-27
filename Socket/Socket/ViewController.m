@@ -7,33 +7,31 @@
 //
 
 #import "ViewController.h"
-#import "RYSocketManager.h"
 #import "RYWebSocketManager.h"
 #import "ChatMessage.pbobjc.h"
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+
 @end
 
 @implementation ViewController
 
-- (void)dealloc {
-//    [[RYSocketManager shareInstance] disConnect];
-    [[RYWebSocketManager shareInstance] disConnect];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-//    [[RYSocketManager shareInstance] connect];
+- (IBAction)connet:(UIButton *)sender {
     [[RYWebSocketManager shareInstance] connect];
 }
 
+- (IBAction)disconnect:(UIButton *)sender {
+    [[RYWebSocketManager shareInstance] disConnect];
+}
+
+- (IBAction)send:(UIButton *)sender {
+    [[RYWebSocketManager shareInstance] sendMsg:self.textField.text];
+}
+
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    [[RYSocketManager shareInstance] sendMsg:@"Robert"];
-    // NSData *data = [chatMessage data];
-//     ChatMessage *message = [ChatMessage parseFromData:data error:nil];
-    
-    [[RYWebSocketManager shareInstance] sendMsg:@"Hello World"];
+    [self.textField resignFirstResponder];
 }
 
 @end

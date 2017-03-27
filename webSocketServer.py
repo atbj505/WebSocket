@@ -15,14 +15,14 @@ class Index(tornado.web.RequestHandler):
 class SocketHandler(tornado.websocket.WebSocketHandler):
     clients = set()
 
-    @staticmethod
-    def send_to_all(message):
-        for c in SocketHandler.clients:
-            c.write_message(self.protoBufSerialize(message))
+    # @staticmethod
+    def send_to_all(self, message):
+        for client in SocketHandler.clients:
+            client.write_message(self.protoBufSerialize(message))
 
     def on_message(self, message):
         receivedMessage = self.protoBufParse(message)
-        SocketHandler.send_to_all(receivedMessage)
+        self.send_to_all(receivedMessage)
 
     def protoBufSerialize(self, message):
         sendDataStr = None
@@ -36,9 +36,9 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
             sendDataStr = message.SerializeToString()
         return sendDataStr
 
-    def protoBufParse(self, str):
+    def protoBufParse(self, message):
         receivedMessage = ChatMessage()
-        receivedMessage.ParseFromString(str)
+        receivedMessage.ParseFromString(message)
         return receivedMessage
 
     def open(self):
@@ -48,7 +48,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
             'message_content': 'Welcome to WebSocket',
         }
         self.write_message(self.protoBufSerialize(data))
-        SocketHandler.send_to_all({
+        self.send_to_all({
             'message_type': 0,
             'user_id': 1,
             'message_content': str(id(self)) + ' has joined',
@@ -57,7 +57,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
 
     def on_close(self):
         SocketHandler.clients.remove(self)
-        SocketHandler.send_to_all({
+        self.send_to_all({
             'message_type': 0,
             'user_id': 1,
             'message_content': str(id(self)) + ' has left',

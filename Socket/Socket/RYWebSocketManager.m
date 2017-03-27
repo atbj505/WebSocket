@@ -48,14 +48,23 @@
     [self.webSocket open];
 }
 
-- (NSString *)protoBufSerialize:(NSString *)content {
+//- (NSString *)protoBufSerialize:(NSString *)content {
+//    ChatMessage *chatMessage = [[ChatMessage alloc] init];
+//    chatMessage.messageType = 0;
+//    chatMessage.userId = 13;
+//    chatMessage.messageContent = content;
+//    NSData *data = [chatMessage data];
+//    NSString *sendDataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    return sendDataStr;
+//}
+
+- (NSData *)protoBufSerialize:(NSString *)content {
     ChatMessage *chatMessage = [[ChatMessage alloc] init];
     chatMessage.messageType = 0;
     chatMessage.userId = 13;
     chatMessage.messageContent = content;
     NSData *data = [chatMessage data];
-    NSString *sendDataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return sendDataStr;
+    return data;
 }
 
 - (ChatMessage *)protoBufParse:(NSString *)message {
