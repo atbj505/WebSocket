@@ -48,16 +48,6 @@
     [self.webSocket open];
 }
 
-//- (NSString *)protoBufSerialize:(NSString *)content {
-//    ChatMessage *chatMessage = [[ChatMessage alloc] init];
-//    chatMessage.messageType = 0;
-//    chatMessage.userId = 13;
-//    chatMessage.messageContent = content;
-//    NSData *data = [chatMessage data];
-//    NSString *sendDataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    return sendDataStr;
-//}
-
 - (NSData *)protoBufSerialize:(NSString *)content {
     ChatMessage *chatMessage = [[ChatMessage alloc] init];
     chatMessage.messageType = 0;
@@ -110,7 +100,6 @@
 - (void)reConnect {
     [self disConnect];
     
-    //超过一分钟就不再重连 所以只会重连5次 2^5 = 64
     if (self.reConnectTime > 64) {
         return;
     }

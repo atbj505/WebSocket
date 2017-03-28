@@ -4,8 +4,7 @@
 import tornado.ioloop
 import tornado.web
 import tornado.websocket
-
-from protobuf.chatMessage_pb2 import ChatMessage
+from protobuf import chatMessageFactory
 
 
 class Index(tornado.web.RequestHandler):
@@ -14,33 +13,19 @@ class Index(tornado.web.RequestHandler):
 
 
 class SocketHandler(tornado.websocket.WebSocketHandler):
-    clients = set()
+    def __init__(self, application, request, **kwargs):
+        super(SocketHandler, self).__init__(application, request, **kwargs)
+        self.clients = set()
+        self.chatMessage = chatMessageFactory.ChatMessageFactory()
 
     # @staticmethod
     def send_to_all(self, message):
-        for client in SocketHandler.clients:
-            client.write_message(self.protoBufSerialize(message))
+        for client in self.clients:
+            client.write_message(self.chatMessage.protoBufSerialize(message))
 
     def on_message(self, message):
-        receivedMessage = self.protoBufParse(message)
+        receivedMessage = self.chatMessage.protoBufParse(message)
         self.send_to_all(receivedMessage)
-
-    def protoBufSerialize(self, message):
-        sendDataStr = None
-        if isinstance(message, dict):
-            chatMessage = ChatMessage()
-            chatMessage.message_type = message["message_type"]
-            chatMessage.user_id = message["user_id"]
-            chatMessage.message_content = message["message_content"]
-            sendDataStr = chatMessage.SerializeToString()
-        elif isinstance(message, ChatMessage):
-            sendDataStr = message.SerializeToString()
-        return sendDataStr
-
-    def protoBufParse(self, message):
-        receivedMessage = ChatMessage()
-        receivedMessage.ParseFromString(message)
-        return receivedMessage
 
     def open(self):
         data = {
@@ -48,16 +33,16 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
             'user_id': 1,
             'message_content': 'Welcome to WebSocket',
         }
-        self.write_message(self.protoBufSerialize(data))
+        self.write_message(self.chatMessage.protoBufSerialize(data))
         self.send_to_all({
             'message_type': 0,
             'user_id': 1,
             'message_content': str(id(self)) + ' has joined',
         })
-        SocketHandler.clients.add(self)
+        self.clients.add(self)
 
     def on_close(self):
-        SocketHandler.clients.remove(self)
+        self.clients.remove(self)
         self.send_to_all({
             'message_type': 0,
             'user_id': 1,
