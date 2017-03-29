@@ -12,20 +12,30 @@ class Index(tornado.web.RequestHandler):
         self.render('templates/index.html')
 
 
+def singleton(cls):
+    instances = {}
+
+    def wrapper(*args, **kwargs):
+        if cls not in instances:
+            instances[cls] = cls(*args, **kwargs)
+        return instances[cls]
+
+    return wrapper
+
+
+@singleton
 class SocketClients(object):
-    clients = set()
+    def __init__(self):
+        self.clients = set()
 
-    @staticmethod
     def getClients():
-        return SocketClients.clients
+        return self.clients
 
-    @staticmethod
     def addClient(socketHandler):
-        SocketClients.clients.add(socketHandler)
+        self.clients.add(socketHandler)
 
-    @staticmethod
     def removeClient(socketHandler):
-        SocketClients.clients.remove(socketHandler)
+        self.clients.remove(socketHandler)
 
 
 class SocketHandler(tornado.websocket.WebSocketHandler):
@@ -34,7 +44,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
         self.chatMessage = chatMessageFactory.ChatMessageFactory()
 
     def send_to_all(self, message):
-        for client in SocketClients.getClients():
+        for client in SocketClients().getClients():
             client.write_message(self.chatMessage.protoBufSerialize(message))
 
     def on_message(self, message):
@@ -42,7 +52,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
         self.send_to_all(receivedMessage)
 
     def open(self):
-        SocketClients.addClient(self)
+        SocketClients().addClient(self)
         data = {
             'message_type': 0,
             'user_id': 1,
@@ -56,7 +66,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
         })
 
     def on_close(self):
-        SocketClients.removeClient(self)
+        SocketClients().removeClient(self)
         self.send_to_all({
             'message_type': 0,
             'user_id': 1,

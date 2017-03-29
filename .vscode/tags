@@ -5,13 +5,15 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 ChatMessage	../protobuf/chatMessage_pb2.py	/^ChatMessage = _reflection.GeneratedProtocolMessageType('ChatMessage', (_message.Message,), dict($/;"	kind:variable	line:100
-ChatMessage	../webSocketServer.py	/^from protobuf.chatMessage_pb2 import ChatMessage$/;"	kind:namespace	line:8
+ChatMessageFactory	../protobuf/chatMessageFactory.py	/^class ChatMessageFactory(object):$/;"	kind:class	line:7
 DESCRIPTOR	../protobuf/chatMessage_pb2.py	/^  DESCRIPTOR = _CHATMESSAGE,$/;"	kind:variable	line:101
 DESCRIPTOR	../protobuf/chatMessage_pb2.py	/^DESCRIPTOR = _descriptor.FileDescriptor($/;"	kind:variable	line:18
-Index	../webSocketServer.py	/^class Index(tornado.web.RequestHandler):$/;"	kind:class	line:11
-SocketHandler	../webSocketServer.py	/^class SocketHandler(tornado.websocket.WebSocketHandler):$/;"	kind:class	line:16
+Index	../webSocketServer.py	/^class Index(tornado.web.RequestHandler):$/;"	kind:class	line:10
+SocketClients	../webSocketServer.py	/^class SocketClients(object):$/;"	kind:class	line:27
+SocketHandler	../webSocketServer.py	/^class SocketHandler(tornado.websocket.WebSocketHandler):$/;"	kind:class	line:43
 _CHATMESSAGE	../protobuf/chatMessage_pb2.py	/^_CHATMESSAGE = _descriptor.Descriptor($/;"	kind:variable	line:51
 _CHATMESSAGE_CHATTYPE	../protobuf/chatMessage_pb2.py	/^_CHATMESSAGE_CHATTYPE = _descriptor.EnumDescriptor($/;"	kind:variable	line:28
+__init__	../webSocketServer.py	/^    def __init__(self, application, request, **kwargs):$/;"	kind:member	line:44
 __init__.py	../protobuf/__init__.py	1;"	kind:file	line:1
 __module__	../protobuf/chatMessage_pb2.py	/^  __module__ = 'chatMessage_pb2'$/;"	kind:variable	line:102
 _b	../protobuf/chatMessage_pb2.py	/^_b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))$/;"	kind:variable	line:5
@@ -20,9 +22,13 @@ _message	../protobuf/chatMessage_pb2.py	/^from google.protobuf import message as
 _reflection	../protobuf/chatMessage_pb2.py	/^from google.protobuf import reflection as _reflection$/;"	kind:namespace	line:8
 _sym_db	../protobuf/chatMessage_pb2.py	/^_sym_db = _symbol_database.Default()$/;"	kind:variable	line:13
 _symbol_database	../protobuf/chatMessage_pb2.py	/^from google.protobuf import symbol_database as _symbol_database$/;"	kind:namespace	line:9
-app	../webSocketServer.py	/^    app = tornado.web.Application([$/;"	kind:variable	line:69
+addClient	../webSocketServer.py	/^    def addClient(socketHandler):$/;"	kind:member	line:35
+app	../webSocketServer.py	/^    app = tornado.web.Application([$/;"	kind:variable	line:80
+chatMessageFactory	../webSocketServer.py	/^from protobuf import chatMessageFactory$/;"	kind:namespace	line:7
+chatMessageFactory.py	../protobuf/chatMessageFactory.py	1;"	kind:file	line:1
+chatMessage_pb2	../protobuf/chatMessageFactory.py	/^from protobuf import chatMessage_pb2$/;"	kind:namespace	line:4
 chatMessage_pb2.py	../protobuf/chatMessage_pb2.py	1;"	kind:file	line:1
-clients	../webSocketServer.py	/^    clients = set()$/;"	kind:variable	line:17
+clients	../webSocketServer.py	/^    clients = set()$/;"	kind:variable	line:28
 containing_type	../protobuf/chatMessage_pb2.py	/^  containing_type=None,$/;"	kind:variable	line:43
 containing_type	../protobuf/chatMessage_pb2.py	/^  containing_type=None,$/;"	kind:variable	line:56
 descriptor_pb2	../protobuf/chatMessage_pb2.py	/^from google.protobuf import descriptor_pb2$/;"	kind:namespace	line:10
@@ -36,17 +42,18 @@ filename	../protobuf/chatMessage_pb2.py	/^  filename=None,$/;"	kind:variable	lin
 filename	../protobuf/chatMessage_pb2.py	/^  filename=None,$/;"	kind:variable	line:54
 full_name	../protobuf/chatMessage_pb2.py	/^  full_name='ChatMessage',$/;"	kind:variable	line:53
 full_name	../protobuf/chatMessage_pb2.py	/^  full_name='ChatMessage.ChatType',$/;"	kind:variable	line:30
-get	../webSocketServer.py	/^    def get(self):$/;"	kind:member	line:12
+get	../webSocketServer.py	/^    def get(self):$/;"	kind:member	line:11
+getClients	../webSocketServer.py	/^    def getClients():$/;"	kind:member	line:31
 ioloop	../webSocketServer.py	/^import tornado.ioloop$/;"	kind:namespace	line:4
 is_extendable	../protobuf/chatMessage_pb2.py	/^  is_extendable=False,$/;"	kind:variable	line:87
 name	../protobuf/chatMessage_pb2.py	/^  name='ChatMessage',$/;"	kind:variable	line:52
 name	../protobuf/chatMessage_pb2.py	/^  name='ChatType',$/;"	kind:variable	line:29
 name	../protobuf/chatMessage_pb2.py	/^  name='chatMessage.proto',$/;"	kind:variable	line:19
 nested_types	../protobuf/chatMessage_pb2.py	/^  nested_types=[],$/;"	kind:variable	line:82
-on_close	../webSocketServer.py	/^    def on_close(self):$/;"	kind:member	line:59
-on_message	../webSocketServer.py	/^    def on_message(self, message):$/;"	kind:member	line:24
+on_close	../webSocketServer.py	/^    def on_close(self):$/;"	kind:member	line:70
+on_message	../webSocketServer.py	/^    def on_message(self, message):$/;"	kind:member	line:52
 oneofs	../protobuf/chatMessage_pb2.py	/^  oneofs=[$/;"	kind:variable	line:90
-open	../webSocketServer.py	/^    def open(self):$/;"	kind:member	line:45
+open	../webSocketServer.py	/^    def open(self):$/;"	kind:member	line:56
 options	../protobuf/chatMessage_pb2.py	/^      options=None),$/;"	kind:variable	line:64
 options	../protobuf/chatMessage_pb2.py	/^      options=None),$/;"	kind:variable	line:71
 options	../protobuf/chatMessage_pb2.py	/^      options=None),$/;"	kind:variable	line:78
@@ -55,15 +62,17 @@ options	../protobuf/chatMessage_pb2.py	/^      options=None,$/;"	kind:variable	l
 options	../protobuf/chatMessage_pb2.py	/^  options=None,$/;"	kind:variable	line:44
 options	../protobuf/chatMessage_pb2.py	/^  options=None,$/;"	kind:variable	line:86
 package	../protobuf/chatMessage_pb2.py	/^  package='',$/;"	kind:variable	line:20
-protoBufParse	../webSocketServer.py	/^    def protoBufParse(self, message):$/;"	kind:member	line:40
-protoBufSerialize	../webSocketServer.py	/^    def protoBufSerialize(self, message):$/;"	kind:member	line:28
-send_to_all	../webSocketServer.py	/^    def send_to_all(self, message):$/;"	kind:member	line:20
+protoBufParse	../protobuf/chatMessageFactory.py	/^    def protoBufParse(self, message):$/;"	kind:member	line:20
+protoBufSerialize	../protobuf/chatMessageFactory.py	/^    def protoBufSerialize(self, message):$/;"	kind:member	line:8
+removeClient	../webSocketServer.py	/^    def removeClient(socketHandler):$/;"	kind:member	line:39
+send_to_all	../webSocketServer.py	/^    def send_to_all(self, message):$/;"	kind:member	line:48
 serialized_end	../protobuf/chatMessage_pb2.py	/^  serialized_end=156,$/;"	kind:variable	line:46
 serialized_end	../protobuf/chatMessage_pb2.py	/^  serialized_end=156,$/;"	kind:variable	line:93
 serialized_pb	../protobuf/chatMessage_pb2.py	/^  serialized_pb=_b('\\n\\x11\\x63hatMessage.proto\\"\\x86\\x01\\n\\x0b\\x43hatMessage\\x12+\\n\\x0cmessage_type\\x18\\x01 \\x01(\\x0e\\x32\\x15.ChatMessage.ChatType\\x12\\x0f\\n\\x07user_id\\x18\\x02 \\x01(\\x05\\x12\\x17\\n\\x0fmessage_content\\x18\\x03 \\x01(\\t\\" \\n\\x08\\x43hatType\\x12\\n\\n\\x06SYSTEM\\x10\\x00\\x12\\x08\\n\\x04USER\\x10\\x01\\x62\\x06proto3')$/;"	kind:variable	line:22
 serialized_start	../protobuf/chatMessage_pb2.py	/^  serialized_start=124,$/;"	kind:variable	line:45
 serialized_start	../protobuf/chatMessage_pb2.py	/^  serialized_start=22,$/;"	kind:variable	line:92
 server	../socketServer.py	/^server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)$/;"	kind:variable	line:21
+singleton	../webSocketServer.py	/^def singleton(cls):$/;"	kind:function	line:15
 socket	../socketServer.py	/^import socket$/;"	kind:namespace	line:4
 socketServer.py	../socketServer.py	1;"	kind:file	line:1
 syntax	../protobuf/chatMessage_pb2.py	/^  syntax='proto3',$/;"	kind:variable	line:21
@@ -82,3 +91,4 @@ values	../protobuf/chatMessage_pb2.py	/^  values=[$/;"	kind:variable	line:33
 web	../webSocketServer.py	/^import tornado.web$/;"	kind:namespace	line:5
 webSocketServer.py	../webSocketServer.py	1;"	kind:file	line:1
 websocket	../webSocketServer.py	/^import tornado.websocket$/;"	kind:namespace	line:6
+wrapper	../webSocketServer.py	/^    def wrapper(*args, **kwargs):$/;"	kind:function	line:18
