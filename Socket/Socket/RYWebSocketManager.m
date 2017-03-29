@@ -10,6 +10,8 @@
 #import <SocketRocket/SocketRocket.h>
 #import "ChatMessage.pbobjc.h"
 
+static NSString * const WEBSOCKETURL = @"ws://192.168.0.104:8000/soc";
+
 @interface RYWebSocketManager () <SRWebSocketDelegate>
 
 @property (nonatomic, strong) SRWebSocket *webSocket;
@@ -33,7 +35,7 @@
 }
 
 - (void)initSocket {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:8000/soc"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:WEBSOCKETURL]];
     
     self.webSocket = [[SRWebSocket alloc] initWithURLRequest:request];
     
@@ -146,6 +148,7 @@
     
     if (code == 1000) {
         [self disConnect];
+        self.webSocket = nil;
     }else{
         
         [self reConnect];
