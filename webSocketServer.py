@@ -28,13 +28,13 @@ class SocketClients(object):
     def __init__(self):
         self.clients = set()
 
-    def getClients():
+    def getClients(self):
         return self.clients
 
-    def addClient(socketHandler):
+    def addClient(self, socketHandler):
         self.clients.add(socketHandler)
 
-    def removeClient(socketHandler):
+    def removeClient(self, socketHandler):
         self.clients.remove(socketHandler)
 
 
@@ -49,7 +49,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
 
     def on_message(self, message):
         receivedMessage = self.chatMessage.protoBufParse(message)
-        self.send_to_all(receivedMessage)
+        self.send_to_all(message)
 
     def open(self):
         SocketClients().addClient(self)

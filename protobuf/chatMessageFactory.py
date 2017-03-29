@@ -12,7 +12,9 @@ class ChatMessageFactory(object):
             chatMessage.message_content = message["message_content"]
             sendData = chatMessage.SerializeToString()
         elif isinstance(message, ChatMessage):
-            sendDataStr = message.SerializeToString()
+            sendData = message.SerializeToString()
+        elif isinstance(message, bytes):
+            sendData = message
         return sendData
 
     def protoBufParse(self, message):
