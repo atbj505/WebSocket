@@ -146,7 +146,7 @@
     NSLog(@"被关闭连接，code:%ld,reason:%@,wasClean:%d",code,reason,wasClean);
     
     //如果是被用户自己中断的那么直接断开连接，否则开始重连
-    if (code == 0) {
+    if (code == 1000) {
         [self disConnect];
     }else{
         
