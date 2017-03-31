@@ -7,35 +7,10 @@ import tornado.websocket
 from protobuf import chatMessageFactory
 
 
-# class Index(tornado.web.RequestHandler):
-#     def get(self):
-#         self.render('templates/index.html')
+class Index(tornado.web.RequestHandler):
+    def get(self):
+        self.render('templates/index.html')
 
-
-# def singleton(cls):
-#     instances = {}
-
-#     def wrapper(*args, **kwargs):
-#         if cls not in instances:
-#             instances[cls] = cls(*args, **kwargs)
-#         return instances[cls]
-
-#     return wrapper
-
-
-# @singleton
-# class SocketClients(object):
-#     def __init__(self):
-#         self.clients = set()
-
-#     def getClients(self):
-#         return self.clients
-
-#     def addClient(self, socketHandler):
-#         self.clients.add(socketHandler)
-
-#     def removeClient(self, socketHandler):
-#         self.clients.remove(socketHandler)
 
 class SocketClients(object):
     clients = set()
@@ -91,7 +66,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
 
 if __name__ == '__main__':
     app = tornado.web.Application([
-        # ('/', Index),
+        ('/', Index),
         ('/soc', SocketHandler),
     ])
     app.listen(8000)
